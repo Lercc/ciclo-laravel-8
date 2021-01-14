@@ -50,5 +50,13 @@ class User extends Authenticatable
     //  RELACION UNO A MUCHOS - ONE TO MANY   OR  (HAS MANY)
     public function posts() {
         return $this->hasMany(Post::class);
-    } 
+    }
+
+    public function getNameUppercaseAttribute() {
+        return strtoupper($this->name);
+    }
+
+    public function setNameAttribute($value) {
+        $this->attributes['Name'] = strtolower($value);
+    }
 }

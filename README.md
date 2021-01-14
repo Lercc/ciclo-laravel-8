@@ -84,6 +84,31 @@
         dd($users->toJson());   // devuelve los datos contenidos formato JSON
       </pre>
 
+## PRESENTACIÓN Y MANIPULACIÓN DE DATOS EN LA CAPA DE LÓGICA
+    - Aplicable como métodos en las entidades:
+      <pre>
+        Namespace App\Models\User
+        .
+        .
+        .
+        //GETTERS FORMAT ----> get'FormatFunctionName'Attribute 
+        public function getNameUppercaseAttribute() {
+          return strtouppercase($this->name);
+        }
+        public function getFullNameAttribute() {
+          return "$this->first_name $this->last_name";
+        }
+
+
+        //SETTERS FORMAT ----> set'AttributeName'Attribute 
+        public function setNameAttribute($value) {
+          $this->attribute['name'] = strtolower($value);
+        }
+        public function setLastNameAttribute($value) {
+          $this->attribute['last_name'] = ucfirst($value);
+        }
+      </pre>
+
 
 ## LARAVEL LANG ES VALIDATIONS
     - config\app -> locale => 'es'

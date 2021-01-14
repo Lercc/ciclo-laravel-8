@@ -38,7 +38,7 @@ Route::get('posts', function () {
     $posts = Post::all();
 
     foreach($posts as $post) {
-        echo "$post->id - <b>{$post->user->name}</b> - $post->title <br>";
+        echo "$post->id - <b>{$post->user->name_uppercase}</b> - $post->title_sentence_format <br>";
     }
 });
 
@@ -49,7 +49,7 @@ Route::get('users', function () {
     $users = User::all();
 
     foreach($users as $user) {
-        echo "$user->id - <b>{$user->name}</b> - {$user->posts->count()} <br>";
+        echo "$user->id - <b>{$user->name_uppercase}</b> - {$user->posts->count()} <br>";
     }
 });
 

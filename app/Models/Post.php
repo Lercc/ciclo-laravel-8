@@ -18,5 +18,19 @@ class Post extends Model
     //  RELACIÓN MUCHOS A UNO - MANY TO ONE   OR  (BELONGS TO)
     public function user() {
         return $this->belongsTo(User::class);
-    } 
+    }
+
+    //GET FORMAT
+    public function getTitleUppercaseAttribute() {
+        return strtoupper($this->title);
+    }
+    public function getTitleSentenceFormatAttribute() {
+        return ucfirst($this->title);
+    }
+
+    //SET FORMAT
+    public function setTitleAttribute($value) {
+        $this->attributes['title'] = strtolower($value);
+    }
+    
 }
