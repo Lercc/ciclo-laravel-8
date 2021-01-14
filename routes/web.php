@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Route;
 */
 use App\Models\Post;
 
-
 Route::get('eloquent', function () {
     // $posts = Post::all();
 
@@ -34,3 +33,23 @@ Route::get('eloquent', function () {
         echo "$post->id $post->title <br>";
     }
 });
+
+Route::get('posts', function () {
+    $posts = Post::all();
+
+    foreach($posts as $post) {
+        echo "$post->id - <b>{$post->user->name}</b> - $post->title <br>";
+    }
+});
+
+
+Use App\Models\User;
+
+Route::get('users', function () {
+    $users = User::all();
+
+    foreach($users as $user) {
+        echo "$user->id - <b>{$user->name}</b> - {$user->posts->count()} <br>";
+    }
+});
+

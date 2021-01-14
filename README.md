@@ -15,6 +15,23 @@
       .
       .
 
+    - Relaciones en eloquent
+      - uno a muchos: $this->hasMany(ClassName::class) 
+      - muchos a uno: $this->belongsTo(ClassName::class)
+    - Consultas en relacciones eloquent
+      <pre>
+        $users = User::all();
+        foreach($users as $user) {
+          echo "$user->id  $user->name { $user->posts->count() } </br>";
+        }
+      <pre>
+      <pre>
+        $posts = Post::all();
+        foreach($posts as $post) {
+          echo "$post->id  { $post->user->name } $post->name </br>";
+        }
+      <pre>
+
 
 ## MIGRATIONS
     - Representan a las tablas y los respectivos campos(atributos) de cada entidad(modelo) creada.

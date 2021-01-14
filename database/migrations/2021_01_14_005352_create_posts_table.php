@@ -17,12 +17,15 @@ class CreatePostsTable extends Migration
             $table->id();
 
             //atributos
+            // $table->bigInteger('id')->unsigned();
+            $table->unsignedBigInteger('user_id');
             $table->String('title');
 
 
             $table->timestamps();
 
             //llaves foráneas
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
