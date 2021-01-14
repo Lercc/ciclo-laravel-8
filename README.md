@@ -2,7 +2,8 @@
   - Laravel v8.22.1 (PHP v7.4.12)
 
 ## ELOQUENT
-    - Eloquent es el ORM (Object-Relational Mapping) de Laravel que te permite una interacción amigable y rápida concualquier Sistema de Gestión de Base de Datos(SGBD)
+    - Eloquent es el ORM (Object-Relational Mapping) de Laravel que te permite una interacción amigable y 
+      rápida concualquier Sistema de Gestión de Base de Datos(SGBD)
     - Permite MAPEAR las estructuras de una BASE_DATOS relacional mediante la lógica OBJETO-RELACIÓN
     - Consultas usuales de Eloquent:
       - ClassName::all()
@@ -31,7 +32,8 @@
     - Es una herramienta que nos permite interactuar con la DB en laravel utilizando Eloquent
     - Se utiliza con el objetivo de testear la BD, a travéz de la consola mediante el comando:
       <pre>php artisan tinker</pre>
-    - Tinker te permite ejecutar código PHP, exáctamente permite utilizar Eloquent o el Query Builder de laravel para realizar testeos CRUD.  
+    - Tinker te permite ejecutar código PHP, exáctamente permite utilizar Eloquent o 
+      el Query Builder de laravel para realizar testeos CRUD.  
     - Tinker te también ejecutar los FACTORIES mediante el comando:
       - Para laravel 7.X:
         <pre>factory(App\ClassName::class, 10)->create()</pre>
@@ -61,7 +63,7 @@
       - NameController@destroy      -> usualmente para eliminar
       - NameController@edit         -> usualmente para editar un registro
 
-|-----------|-------------------|---------------|---------------------------------------------|------------|
+
 | Method    | URI               | Name          | Action                                      | Middleware |
 |-----------|-------------------|---------------|---------------------------------------------|------------|
 | GET|HEAD  | pages             | pages.index   | App\Http\Controllers\PageController@index   | web        |
@@ -71,7 +73,6 @@
 | PUT|PATCH | pages/{page}      | pages.update  | App\Http\Controllers\PageController@update  | web        |
 | DELETE    | pages/{page}      | pages.destroy | App\Http\Controllers\PageController@destroy | web        |
 | GET|HEAD  | pages/{page}/edit | pages.edit    | App\Http\Controllers\PageController@edit    | web        |
-|-----------|-------------------|---------------|---------------------------------------------|------------|
 
     - Generar un controlador:
         <pre>php artisan make:controller [NameController]</pre>
