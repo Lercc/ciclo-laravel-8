@@ -1,62 +1,116 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# LARAVEL 8.X
+  - Laravel v8.22.1 (PHP v7.4.12)
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## ELOQUENT
+    - Eloquent es el ORM (Object-Relational Mapping) de Laravel que te permite una interacción amigable y rápida concualquier Sistema de Gestión de Base de Datos(SGBD)
+    - Permite MAPEAR las estructuras de una BASE_DATOS relacional mediante la lógica OBJETO-RELACIÓN
+    - Consultas usuales de Eloquent:
+      - ClassName::all()
+      - ClassName::where('id','>=','10') -> get()
+      - ClassName::where('id','>=','10') -> orderBy('id', 'desc') -> get()
+      - ClassName::where('id','>=','10') -> orderBy('id', 'desc') -> talke(3) -> get()
+      
+      .
+      .
+      .
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## MIGRATIONS
+    - Representan a las tablas y los respectivos campos(atributos) de cada entidad(modelo) creada.
+    - Para crear las tablas y sus atributos en la BD
+      <pre>php artisan migrate</pre>
+    - Para actulizar las tablas y sus atributos en la BD
+      <pre>php artisan migrate:refresh</pre>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## FACTORY
+    - Utiliza la libreria [FAKER](https://github.com/fzaninotto/Faker) para crear datos de prueba en la DB.
+    - Permite definir que contenido tendrá los campos de las Entidades en la BD.
+    - Será ejecutado ya sea con el comando de SEED o con FACTORY por medio de Tinker.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## TIKER
+    - Es una herramienta que nos permite interactuar con la DB en laravel utilizando Eloquent
+    - Se utiliza con el objetivo de testear la BD, a travéz de la consola mediante el comando:
+      <pre>php artisan tinker</pre>
+    - Tinker te permite ejecutar código PHP, exáctamente permite utilizar Eloquent o el Query Builder de laravel para realizar testeos CRUD.  
+    - Tinker te también ejecutar los FACTORIES mediante el comando:
+      - Para laravel 7.X:
+        <pre>factory(App\ClassName::class, 10)->create()</pre>
+      - Para laravel 8.X:
+        <pre>App\Models\ClassName::factory(10)->create()</pre>
 
-## Learning Laravel
+## LARAVEL LANG ES VALIDATIONS
+    - config\app -> locale => 'es'
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+    - resource\lang
+      1. create folder 'es'
+      2. capy and paste 'es/validations.php' from https://github.com/Laravel-Lang/lang
+      3. run next line to watch changes 
+        <pre>php artisan config:cache</pre>
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### MIDDLEWARE: FILTROS A PETICIONES HTTP
+    - Capa de lógica adicional de filtrado de peticiones HTTP
 
-## Laravel Sponsors
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## ROUTE AVANZADO
+    - Route::resource() -> Permite gestionar 7 rutas adjutadas a un Controlador con 7 métodos.
+      - NameController@index        -> usualmente para listar
+      - NameController@store        -> usualmente para salvar
+      - NameController@create       -> usualmente para crear
+      - NameController@show         -> usualmente para mostrar un registro
+      - NameController@update       -> usualmente para actualizar
+      - NameController@destroy      -> usualmente para eliminar
+      - NameController@edit         -> usualmente para editar un registro
 
-### Premium Partners
+|-----------|-------------------|---------------|---------------------------------------------|------------|
+| Method    | URI               | Name          | Action                                      | Middleware |
+|-----------|-------------------|---------------|---------------------------------------------|------------|
+| GET|HEAD  | pages             | pages.index   | App\Http\Controllers\PageController@index   | web        |
+| POST      | pages             | pages.store   | App\Http\Controllers\PageController@store   | web        |
+| GET|HEAD  | pages/create      | pages.create  | App\Http\Controllers\PageController@create  | web        |
+| GET|HEAD  | pages/{page}      | pages.show    | App\Http\Controllers\PageController@show    | web        |
+| PUT|PATCH | pages/{page}      | pages.update  | App\Http\Controllers\PageController@update  | web        |
+| DELETE    | pages/{page}      | pages.destroy | App\Http\Controllers\PageController@destroy | web        |
+| GET|HEAD  | pages/{page}/edit | pages.edit    | App\Http\Controllers\PageController@edit    | web        |
+|-----------|-------------------|---------------|---------------------------------------------|------------|
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/)**
-- **[OP.GG](https://op.gg)**
+    - Generar un controlador:
+        <pre>php artisan make:controller [NameController]</pre>
 
-## Contributing
+    - Generar un controlador con los 7 métodos necesarios que utilizara Route::resource()
+        <pre>php artisan make:controller [NameController] --resource || -r</pre>
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+    - Generar un controlador con los 7 métodos necesarios, así como el modelo para el controlador:
+        <pre>php artisan make:controller [NameController] --resource --model</pre>
 
-## Code of Conduct
+    - Generar un modelo con:
+        - -a, --all             Generate a migration, seeder, factory, and resource controller for the model
+        - -c, --controller      Create a new controller for the model
+        - -f, --factory         Create a new factory for the model
+        - -m, --migration       Create a new migration file for the model
+        - -s, --seed            Create a new seeder file for the model
+        - -r, --resource        Indicates if the generated controller should be a resource controller
+        - --api             Indicates if the generated controller should be an API controller
+        <pre>php artisan make:model [NameController] -a | -c | -f | -m | -s | -r | --api</pre>
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## REQUEST
+    - Capa de laravle que permite hacer validaciones fuera del controller en un request
+      <pre>php artisan make:reques NameRequest</pre>
 
-## Security Vulnerabilities
+## LARAVEL UI
+    - composer require laravel/ui --dev
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+    - php artisan ui bootstrap --auth
+    - php artisan ui vue --auth
+    - php artisan ui react --auth
 
-## License
+    - instalar dependiencias de JS
+        - npm install
+    
+    - ver las dependencias desactualizadas
+        - npm outdate
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+    - actualizar las dependencias
+        - npm update
+
+    - compilar
+        - npm run dev
