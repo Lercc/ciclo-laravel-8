@@ -78,7 +78,12 @@
     - find() : puede buscar por ID o por MODELO
 
 ## SERIALIZACIÓN DE DATOS
-    - Manipulación de datos para retornarlos en array o Json
+    - Manipulación de datos para retornarlos en array o Json:
+      <pre>
+        dd($users->toArray());  // devuelve los datos contenidos en arrays
+        dd($users->toJson());   // devuelve los datos contenidos formato JSON
+      </pre>
+
 
 ## LARAVEL LANG ES VALIDATIONS
     - config\app -> locale => 'es'

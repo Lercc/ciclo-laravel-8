@@ -65,3 +65,11 @@ Route::get('collections', function () {
     
 });
 
+Route::get('serialization', function () {
+    $users = User::all();
+
+    // dd($users->toArray());  // devuelve los datos contenidos en arrays
+    dd($users->toJson());      // devuelve los datos contenidos formato JSON
+    
+});
+
