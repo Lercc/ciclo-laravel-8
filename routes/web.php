@@ -53,3 +53,15 @@ Route::get('users', function () {
     }
 });
 
+Route::get('collections', function () {
+    $users = User::all();
+
+    // dd($users);
+    // dd($users->contains(5));           //pregunta si existe un usuario con id 5, retorna true o false según si encuentra o no el dato
+    // dd($users->except([1,2,3]));       //devuelve la consulta excepto los datos de los id pasados por parámetro
+    // dd($users->only([1,3]));           //solo puede buscar por ID
+    // dd($users->find([1,2]));           //puede buscar por ID y por MODELOS 
+    dd($users->load('posts'));
+    
+});
+

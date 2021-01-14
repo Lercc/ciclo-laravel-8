@@ -32,7 +32,6 @@
         }
       <pre>
 
-
 ## MIGRATIONS
     - Representan a las tablas y los respectivos campos(atributos) de cada entidad(modelo) creada.
     - Para crear las tablas y sus atributos en la BD
@@ -56,6 +55,30 @@
         <pre>factory(App\ClassName::class, 10)->create()</pre>
       - Para laravel 8.X:
         <pre>App\Models\ClassName::factory(10)->create()</pre>
+
+## COLECCIONES DE DATOS
+    - Eloquent maneja las respuestas de las peticiones a la BD instanciando
+      la clase collections, por ende respuesta contiene métod que podemos usar:
+      
+      <pre>
+        $users = User::all();
+
+        dd($users->contains(5));        //pregunta si existe un usuario con id 5, retorna true o false según si encuentra o no el dato
+        dd($users->except([1,2,3]));    //devuelve la consulta excepto los datos de los id pasados por parámetro
+        dd($users->only([1,3]));        //solo puede buscar por ID
+        dd($users->find([1,2]));        //puede buscar por ID y por MODELOS 
+        dd($users->load('posts'));
+      </pre>
+
+    - with() : carga las relaciones por adelantado y luego la consulta.
+    - load() : ejecuta la consulta y luego las relaciones.
+    Por ejemplo para un listado sería conveniente usar with() pero para un elemento podría usar load()
+
+    - only() :solo puede buscar por ID y devuelve un array
+    - find() : puede buscar por ID o por MODELO
+
+## SERIALIZACIÓN DE DATOS
+    - Manipulación de datos para retornarlos en array o Json
 
 ## LARAVEL LANG ES VALIDATIONS
     - config\app -> locale => 'es'
