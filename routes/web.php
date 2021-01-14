@@ -4,15 +4,33 @@ use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Eloquent
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+| Con fines prácticos el crud no se realizará en
+| los controladores 
 |
 */
+use App\Models\Post;
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::get('eloquent', function () {
+    // $posts = Post::all();
+
+    // $posts = Post::where('id','>=','10')
+    //     ->get();
+
+    // $posts = Post::where('id','>=','10')
+    //     ->orderBy('id','desc')
+    //     ->get();
+
+    $posts = Post::where('id', '>=', '10')
+        ->orderBy('id','desc')
+        ->take(4)
+        ->get();
+
+
+    foreach($posts as $post) {
+        echo "$post->id $post->title <br>";
+    }
 });
